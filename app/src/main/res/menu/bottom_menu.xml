@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_baseline_home"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/basketFragment"
+        android:icon="@drawable/ic_baseline_basket"
+        android:title="@string/basket" />
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_baseline_user"
+        android:title="@string/profile" />
+
+    <item
+        android:id="@+id/favoriteFragment"
+        android:icon="@drawable/ic_baseline_like"
+        android:title="@string/favorite" />
+
+</menu>

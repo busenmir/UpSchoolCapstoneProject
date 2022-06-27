@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="productsModel"
+            type="com.example.capstoneproject.data.model.ProductsModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        app:cardCornerRadius="@dimen/card_corner_radius_small"
+        app:cardElevation="@dimen/card_elevation_small"
+        app:strokeColor="@color/eden"
+        app:strokeWidth="@dimen/stroke_width_small">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_big">
+
+            <ImageView
+                android:id="@+id/productsImageView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_height"
+                android:layout_margin="@dimen/margin_very_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_baseline_basket" />
+
+            <TextView
+                android:id="@+id/prodyctsNameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:lines="2"
+                android:text="@{productsModel.category}"
+                android:textAlignment="center"
+                android:textColor="@color/eden"
+                android:textSize="@dimen/text_size_small"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productsDetailText" />
+
+            <TextView
+                android:id="@+id/productsDetailText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:lines="2"
+                android:text="@{productsModel.title}"
+                android:textAlignment="center"
+                android:textColor="@color/eden"
+                android:textSize="@dimen/text_size_very_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productsImageView" />
+
+            <TextView
+                android:id="@+id/productsPriceText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text='@{String.valueOf(productsModel.price)+ " ₺"}'
+                android:textAlignment="center"
+                android:textColor="@color/eden"
+                android:textSize="@dimen/text_size_very_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/prodyctsNameText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/addBasketImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|top"
+            android:background="#23FF8F00"
+            android:padding="@dimen/padding_medium_small"
+            app:srcCompat="@drawable/ic_add" />
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
