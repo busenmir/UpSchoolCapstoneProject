@@ -1,5 +1,5 @@
 # Kiss Shop 🧡🧡
-E-Commed application prepared for the Android Developer Bootcamp held in cooperation with UpSchool & Akbank 🌸🤗
+E-commerce application prepared for the Android Developer Bootcamp held in cooperation with UpSchool & Akbank 🌸🤗
 
 <details open="open">
   <summary>Table of Contents</summary>
