@@ -2,8 +2,6 @@ package com.example.capstoneproject.main.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.capstoneproject.data.model.ProductsModel
@@ -11,14 +9,7 @@ import com.example.capstoneproject.databinding.ProductsItemBinding
 import com.squareup.picasso.Picasso
 
 class ProductsAdapter : RecyclerView.Adapter<ProductsAdapter.ViewHolder>(){
-    private val produsctsList = ArrayList<ProductsModel>()
-    /*
-    var proFilterList = ArrayList<ProductsModel>()
-    init {
-        proFilterList = produsctsList
-    }
-
-     */
+    private val productsList = ArrayList<ProductsModel>()
     class ViewHolder (var productsItemBinding: ProductsItemBinding) : RecyclerView.ViewHolder(productsItemBinding.root) {
         fun bind(item : ProductsModel){
             productsItemBinding.apply {
@@ -45,56 +36,17 @@ class ProductsAdapter : RecyclerView.Adapter<ProductsAdapter.ViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(produsctsList[position])
+        holder.bind(productsList[position])
     }
 
     override fun getItemCount(): Int {
-        return produsctsList.size
+        return productsList.size
     }
     fun updateProductsList(newproductsList : List<ProductsModel>){
-        produsctsList.clear()
-        produsctsList.addAll(newproductsList)
-        notifyDataSetChanged()
-        //notifyItemRangeInserted(0,newproductsList.size)
+        productsList.clear()
+        productsList.addAll(newproductsList)
+
+    //notifyDataSetChanged()
+    //notifyItemRangeInserted(0,newproductsList.size)
     }
- /*
-    override fun getFilter(): Filter {
-
-        return object : Filter() {
-            override fun performFiltering(constraint: CharSequence?): FilterResults {
-
-                val searchText = constraint.toString().lowercase()
-                proFilterList = if (searchText.isEmpty()) {
-                    produsctsList
-                } else {
-                    val resultList = ArrayList<ProductsModel>()
-                    for (row in produsctsList) {
-                        row.title?.let { Name ->
-                            row.category?.let { Category ->
-                                    if (Name.lowercase().contains(searchText) ||
-                                        Category.lowercase().contains(searchText)
-                                    ) {
-                                        resultList.add(row)
-                                    }
-                            }
-                        }
-                    }
-                    resultList
-                }
-
-                val filterResults = FilterResults()
-                filterResults.values = proFilterList
-
-                return filterResults
-            }
-
-            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                proFilterList = results?.values as ArrayList<ProductsModel>
-                notifyItemRangeInserted(0,proFilterList.size)
-            }
-        }
-    }
-
-  */
-
 }

@@ -1,8 +1,10 @@
 package com.example.capstoneproject.main.basket
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.capstoneproject.R
 import com.example.capstoneproject.data.model.ProductsModel
 import com.example.capstoneproject.databinding.BasketItemBinding
 import com.google.android.material.snackbar.Snackbar
@@ -21,16 +23,22 @@ class BasketAdapter : RecyclerView.Adapter<BasketAdapter.ViewHolder>() {
                 item.image.let {
                     Picasso.get().load(it).into(basketImageView)
                 }
-                BasketDelete.setOnClickListener { at ->
-                    Snackbar.make(at,"Ürünü silmek istiyor musunuz?",Snackbar.LENGTH_LONG)
-                        .setAction("Evet"){ et->
+                BasketDelete.setOnClickListener { view ->
+                    makeSnackBar("Do you want to delete the product?", view)
+                        .setAction("Yes") {
                             onItemClick(item.id!!)
-                            Snackbar.make(et,"Silindi",Snackbar.LENGTH_LONG).show()
+                            makeSnackBar("Your product has been deleted.", it).show()
                         }.show()
                 }
             }
         }
     }
+
+    fun makeSnackBar(text: String, view: View) =
+        Snackbar.make(view, text, Snackbar.LENGTH_LONG)
+            .apply {
+                anchorView = view.rootView.findViewById(R.id.bottomNav)
+            }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val basketItemBinding =

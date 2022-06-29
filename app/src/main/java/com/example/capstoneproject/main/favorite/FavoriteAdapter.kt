@@ -10,14 +10,13 @@ import com.example.capstoneproject.databinding.FavoriteItemBinding
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 
-class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
+class FavoriteAdapter: RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
     private val favoriteList = ArrayList<ProductsModel>()
 
     var onItemClick: (Int) -> Unit = {}
 
-    inner class ViewHolder(var binding: FavoriteItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(var binding : FavoriteItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ProductsModel) {
             binding.apply {
                 basketModel = item
@@ -25,10 +24,10 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
                     Picasso.get().load(it).into(basketImageView)
                 }
                 FavDelete.setOnClickListener { view ->
-                    makeSnackBar("Ürünü silmek istiyor musunuz?", view)
-                        .setAction("Evet") {
+                    makeSnackBar("Do you want to delete the product?", view)
+                        .setAction("Yes") {
                             onItemClick(item.id!!)
-                            makeSnackBar("Ürününüz silindi.", it).show()
+                            makeSnackBar("Your product has been deleted.", it).show()
                         }.show()
                 }
             }
@@ -55,10 +54,9 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
         return favoriteList.size
     }
 
-    fun updateBasketList(newproductsList: List<ProductsModel>) {
+    fun updateBasketList(newProductsList : List<ProductsModel>){
         favoriteList.clear()
-        favoriteList.addAll(newproductsList)
+        favoriteList.addAll(newProductsList)
         notifyDataSetChanged()
-        //notifyItemRangeInserted(0,newproductsList.size)
     }
 }
