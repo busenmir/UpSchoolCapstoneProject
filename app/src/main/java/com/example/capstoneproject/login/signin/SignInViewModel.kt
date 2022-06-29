@@ -6,26 +6,17 @@ import androidx.lifecycle.ViewModel
 import com.example.capstoneproject.data.repository.LoginRepository
 
 class SignInViewModel : ViewModel() {
-    private var usersRepo = LoginRepository()
+    private var loginRepo = LoginRepository()
 
     private var _isSignIn = MutableLiveData<Boolean>()
     val isSignIn: LiveData<Boolean>
         get() = _isSignIn
 
-    private var currentUserResult = MutableLiveData<Boolean>()
-    val isCurrentUser: LiveData<Boolean>
-        get() = currentUserResult
-
     init {
-        _isSignIn = usersRepo.getIsSignIn()
-
+        _isSignIn = loginRepo.getIsSignIn()
     }
+
     fun signIn(eMail: String, password: String) {
-        usersRepo.signInClicked(eMail, password)
-    }
-
-    fun currentUser(){
-        usersRepo.checkCurrentUser()
-        currentUserResult = usersRepo.getCurrentUser()
+        loginRepo.signInClicked(eMail, password)
     }
 }

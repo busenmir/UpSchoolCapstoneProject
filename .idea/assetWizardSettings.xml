@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/phone/baseline_phone_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/arrow_right_alt/baseline_arrow_right_alt_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,9 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="1565c0" />
-                            <entry key="outputName" value="ic_baseline_phonee" />
-                            <entry key="sourceFile" value="C:\Users\Asus\Downloads\sale.svg" />
+                            <entry key="outputName" value="ic_baseline_arrow_right_alt_24" />
+                            <entry key="sourceFile" value="C:\Users\Asus\AndroidStudioProjects\CapstoneProject" />
                           </map>
                         </option>
                       </PersistentState>

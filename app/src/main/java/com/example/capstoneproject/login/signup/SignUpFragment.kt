@@ -6,15 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.fragment.findNavController
 import com.example.capstoneproject.R
 import com.example.capstoneproject.databinding.FragmentSignUpBinding
 import com.google.android.material.snackbar.Snackbar
 
 class SignUpFragment : Fragment() {
-    private var _binding: FragmentSignUpBinding? = null
+    private var _binding : FragmentSignUpBinding? = null
     private val binding get() = _binding!!
-
     private val viewModel by lazy { SignUpViewModel() }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,70 +27,56 @@ class SignUpFragment : Fragment() {
         binding.signUpFragmentObject = this
         initObservers()
     }
-
     private fun initObservers() {
 
         with(binding) {
 
             with(viewModel) {
 
-                isInfosValid.observe(viewLifecycleOwner) {
+                isInfosValid.observe(viewLifecycleOwner, {
 
-                    if (it.not()) Snackbar.make(
-                        requireView(),
-                        R.string.incomplete_information_entered,
-                        1000
-                    ).show()
+                    if (it.not()) Snackbar.make(requireView(), R.string.incomplete_information_entered, 1000).show()
 
-                }
+                })
 
-                isValidMail.observe(viewLifecycleOwner) {
+                isValidMail.observe(viewLifecycleOwner, {
 
                     if (it.not()) {
                         emailInputLayout.error = getString(R.string.invalid_mail)
-                    } else {
+                    }   else {
                         emailInputLayout.error = ""
                     }
 
-                }
+                })
 
-                isSignUp.observe(viewLifecycleOwner) {
+                isPasswordMatch.observe(viewLifecycleOwner, {
+
+                    if (it.not()) {
+                        passwordInputLayout.error = getString(R.string.password_match_error)
+                        confirmPasswordInputLayout.error = getString(R.string.password_match_error)
+                    }   else {
+                        passwordInputLayout.error = ""
+                        confirmPasswordInputLayout.error = ""
+                    }
+
+                })
+
+                isSignUp.observe(viewLifecycleOwner, {
 
                     if (it) {
-                        Snackbar.make(requireView(), R.string.sign_up_snack_text, 3000).show()
-                        clearFields()
-                        val action = SignUpFragmentDirections.actionSignUpFragmentToSignInFragment()
-                        findNavController().navigate(action)
-                    } else {
+                        Snackbar.make(requireView(), R.string.sign_up_snack_text, 1000).show()
+                    }   else {
                         emailInputLayout.error = getString(R.string.registered_mail)
                     }
 
-                }
+                })
             }
         }
     }
 
-    fun signUpButton(email: String, password: String,nickname: String,
-                     phoneNumber: String,
-                     name: String) {
-        viewModel.signUpClicked(email, password,nickname,phoneNumber,name)
+    fun signUpButton(email: String, password: String, confirmPassword: String) {
+        viewModel.signUpClicked(email, password, confirmPassword)
     }
-
-    private fun clearFields() {
-        with(binding) {
-            emailEditText.setText("")
-            emailInputLayout.error = ""
-            passwordEditText.setText("")
-            passwordInputLayout.error = ""
-            phoneEditText.setText("")
-            phoneInputLayout.error = ""
-            nickEditText.setText("")
-            nickInputLayout.error = ""
-            nameEditText.setText("")
-            nameInputLayout.error = ""
-        }
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -1,10 +1,8 @@
 package com.example.capstoneproject.data.repository
 
-import android.content.ContentValues
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.capstoneproject.data.model.LoginModel
-import com.example.capstoneproject.data.model.ProductsModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -15,15 +13,15 @@ class LoginRepository {
 
     private var _isSignUp = MutableLiveData<Boolean>()
 
-    var isLoading = MutableLiveData<Boolean>()
-
     private var resetPasswordResult = MutableLiveData<Boolean>()
 
-    var currentUserResult = MutableLiveData<Boolean>()
-    var userModel = MutableLiveData<LoginModel>()
+    private var currentUserResult = MutableLiveData<Boolean>()
+    private var auth : FirebaseAuth? = null
 
-    private var auth = Firebase.auth
-    private val db = Firebase.firestore
+    init {
+        auth = Firebase.auth
+    }
+
 
     fun getIsSignUp(): MutableLiveData<Boolean> {
         return _isSignUp
@@ -32,108 +30,68 @@ class LoginRepository {
         return _isSignIn
     }
 
-    fun getResetPasswordResult(): MutableLiveData<Boolean>{
+    fun getResetPasswordResult() : MutableLiveData<Boolean>{
         return resetPasswordResult
     }
-
-    fun getCurrentUser(): MutableLiveData<Boolean>{
-        return currentUserResult
-    }
-
-    fun resetPasswordClicked(eMail: String){
-        auth.sendPasswordResetEmail(eMail).addOnSuccessListener {
-            resetPasswordResult.value= true
-            Log.d("SIGN IN", "Success")
-        }.addOnFailureListener{
-            resetPasswordResult.value = false
-            Log.w("SIGN IN", "Failure")
-        }
-    }
-    fun checkCurrentUser(){
-        val currentUser = auth.currentUser
-        if(currentUser!=null)
-            currentUserResult.value=true
-    }
-
     fun signInClicked(eMail: String, password: String) {
 
-        auth.signInWithEmailAndPassword(eMail, password).addOnCompleteListener { task ->
+        auth?.signInWithEmailAndPassword(eMail, password)?.addOnSuccessListener {
+            _isSignIn.value = true
+            Log.d("SIGN IN", "Success")
+        }?.addOnFailureListener{
+            _isSignIn.value = false
+            Log.d("SIGN IN", "Failure")
+        }
+  /*
+        addOnCompleteListener { task ->
 
             if (task.isSuccessful) {
                 _isSignIn.value = true
                 Log.d("SIGN IN", "Success")
             } else {
                 _isSignIn.value = false
-                Log.w("SIGN IN", "Failure")
+                Log.w("SIGN IN", "Failure", task.exception)
             }
 
         }
+
+   */
     }
-    fun signUpClicked(eMail: String, password: String,nickname: String,phoneNumber: String,name: String) {
+    fun signUpClicked(eMail: String, password: String) {
 
-        auth.createUserWithEmailAndPassword(eMail, password).addOnCompleteListener{ task ->
-            if(task.isSuccessful){
-                val currentUser = auth.currentUser
-                currentUser?.let{ fb->
-                    val user = hashMapOf(
-                        "name" to name,
-                        "email" to eMail,
-                        "nickname" to nickname,
-                        "phonenumber" to phoneNumber
-                    )
-
-                    db.collection("users").document(fb.uid)
-                        .set(user)
-                        .addOnSuccessListener {
-                            _isSignUp.value = true
-                            Log.d("SIGN UP", "Success")
-                        }.addOnFailureListener{
-                            _isSignUp.value = false
-                            Log.w("SIGN UP", "Failure")
-                        }
-
-                }
-            }else{
-                _isSignUp.value=false
-                Log.w("SIGN UP", "Failure")
-            }
-
-        }
-            /*
+        auth?.createUserWithEmailAndPassword(eMail, password)?.addOnSuccessListener {
             _isSignUp.value = true
             Log.d("SIGN UP", "Success")
-        }.addOnFailureListener{
+        }?.addOnFailureListener{
             _isSignUp.value = false
             Log.w("SIGN UP", "Failure")
         }
+       /*
+        addOnCompleteListener { task ->
 
-             */
-    }
+            if (task.isSuccessful) {
+                _isSignUp.value = true
+                Log.d("SIGN UP", "Success")
+            } else {
+                _isSignUp.value = false
+                Log.w("SIGN UP", "Failure", task.exception)
+            }
 
-    fun getUserInfo() {
-        isLoading.value = true
-        auth.currentUser?.let { user ->
-
-            val docRef = db.collection("users").document(user.uid)
-            docRef.get()
-                .addOnSuccessListener { document ->
-                    isLoading.value = false
-                    document?.let {
-                        userModel.value = LoginModel(
-                            user.email.orEmpty(),
-                            document.get("nickname") as String,
-                            document.get("phonenumber") as String,
-                            document.get("name") as String,
-                        )
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    isLoading.value = false
-                    Log.d(ContentValues.TAG, "get failed with ", exception)
-                }
         }
+        */
     }
-    fun signOut() {
-        auth.signOut()
+
+    fun checkCurrentUser(){
+        val currentUser = auth?.currentUser
+        if(currentUser!=null)
+            currentUserResult.value=true
+    }
+
+    fun resetPassword(eMail: String){
+        auth?.sendPasswordResetEmail(eMail)?.addOnSuccessListener {
+            resetPasswordResult.value=true
+        }?.addOnFailureListener{
+            resetPasswordResult.value=false
+        }
     }
 }

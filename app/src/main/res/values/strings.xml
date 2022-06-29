@@ -1,12 +1,19 @@
 <resources>
     <string name="app_name">CapstoneProject</string>
 
+    <string name="book_image_description">Book Image</string>
+    <string name="profile_picture_description">Profile Picture</string>
+    <string name="books_app_logo_description">Books App Logo</string>
+    <string name="add_basket_description">Add Basket Icon</string>
+
     <string name="cancel">CANCEL</string>
     <string name="add_basket">ADD BASKET</string>
     <string name="sign_up">SIGN UP</string>
     <string name="sign_in">SIGN IN</string>
 
-    <string name="search_view_hint">Enter Products</string>
+    <string name="search_view_hint">Enter book name, author or publisher</string>
+    <string name="nickname_hint">Nickname</string>
+    <string name="phone_number_hint">Phone Number</string>
     <string name="e_mail_hint">E - Mail</string>
     <string name="password_hint">Password</string>
     <string name="confirm_password_hint">Confirm Password</string>
@@ -14,16 +21,21 @@
     <string name="e_mail_address">E-Mail\nAddress</string>
     <string name="nickname">Nickname</string>
     <string name="phone_number">Phone\nNumber</string>
-    <string name="home">Home</string>
-    <string name="shopping">Shopping</string>
+    <string name="books">Books</string>
+    <string name="basket">Basket</string>
     <string name="profile">Profile</string>
-    <string name="user">User</string>
     <string name="best_sellers">Best Sellers</string>
+    <string name="add_basket_snack_text">Book added to basket!</string>
     <string name="basket_empty">Your basket is empty!</string>
     <string name="invalid_mail">Invalid e-mail address</string>
     <string name="registered_mail">E-mail address already registered!</string>
     <string name="incomplete_information_entered">Incomplete information entered!</string>
     <string name="wrong_email_password">Wrong E-mail or Password, Try Again !</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="credit_card">Credit Card</string>
+    <string name="paypal">Paypal</string>
+    <string name="apple_pay">Apple Pay</string>
+    <string name="google_pay">Google Pay</string>
     <string name="address_title">Address</string>
     <string name="edit">Edit</string>
     <string name="save">Save</string>
@@ -31,7 +43,7 @@
     <string name="order_now">Order Now</string>
     <string name="choose_a_payment_method">Choose a payment method</string>
     <string name="your_order_has_been_received">Your order\nhas been received</string>
-    <string name="confirm_card">Confirm Cart</string>
+    <string name="go_to_pay">Go To Pay</string>
     <string name="total_price_value">%s ₺</string>
     <string name="order_now_error">Please choose a payment method!</string>
     <string name="address_error">Please enter address information!</string>
@@ -41,9 +53,18 @@
     <string name="sign_out">Sign Out</string>
     <string name="account">Already have an account?</string>
     <string name="forgot">Forgot your password?</string>
-    <string name="error_forgot">Incorrect email</string>
-    <string name="control_signin">CANNOT BE EMPTY</string>
 
+    <integer-array name="booksapp_logo_colors">
+        <item>@color/eden</item>
+        <item>@color/elm</item>
+        <item>@color/icecold</item>
+        <item>@color/macaroniandcheese</item>
+        <item>@color/chardonnay</item>
+        <item>@color/elm</item>
+        <item>@color/icecold</item>
+        <item>@color/macaroniandcheese</item>
+        <item>@color/chardonnay</item>
+    </integer-array>
     <string name="title_activity_login">LoginActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -56,19 +77,8 @@
     <string name="log_in">LOG IN</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="forgot_password">Please enter your email address to reset your password.</string>
-    <string name="basket">Basket</string>
-    <string name="favorite">Favorite</string>
-    <string name="kiss_shop">Kiss SHOP</string>
-    <string name="search">Search</string>
-    <string name="discounted_products">Discounted products</string>
-    <string name="products">Products</string>
-    <string name="kissshop">Kiss Shop</string>
-    <string name="success">SUCCESS !</string>
-    <string name="forgotT">FORGOT</string>
-    <string name="name_username">NAME-USERNAME</string>
-    <string name="contuine_shop">Do you want to continue shopping?</string>
-    <string name="sign">Sign Out</string>
-    <string name="email">Email</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="password_info">Şifrenizi değiştirmek için lütfen e-mail adresinizi giriniz. İletilen maildeki linke tıklayarak değiştirebilirsiniz.</string>
+
 
 </resources>
