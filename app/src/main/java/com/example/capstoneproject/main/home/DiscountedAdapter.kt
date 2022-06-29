@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.capstoneproject.data.model.ProductsModel
-import com.example.capstoneproject.data.util.downloadFromUrl
 import com.example.capstoneproject.databinding.DiscountedItemBinding
 import com.squareup.picasso.Picasso
 

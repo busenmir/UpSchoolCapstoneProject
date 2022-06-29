@@ -48,4 +48,9 @@ class ProductsAPIService {
         return api.getProductsbyCategory(category)
     }
 
+    suspend fun searchProducts(word:String) : List<ProductsModel>
+    {
+        return api.searchProducts(word)
+    }
+
 }

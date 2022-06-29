@@ -47,25 +47,21 @@ class CardDetailFragment : BottomSheetDialogFragment() {
             viewModel.addProductToBasket(auth.currentUser!!.email!! ,model.title!!,model.price!!,model.description!!,model.category!!,model.image!!,model.rate!!,model.count!!,model.sale_state!!)
             viewModel.isProAddedBasket.observe(viewLifecycleOwner){
                 it?.let {
-                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
                     println(it.message)
                 }
             }
         }
         binding.favoriteButton.setOnClickListener {
             model.let {
-                viewModel.addProductsToFavorites(it)
-                /*
                 if(it != null){
-                    binding.favoriteButton.backgroundTintList=resources.getColorStateList(R.color.black)
+                    binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_24)
                     binding.favoriteButton.isSelected = true
-                }else{
-                    binding.favoriteButton.backgroundTintList=resources.getColorStateList(R.color.eden)
-                    binding.favoriteButton.isSelected =
                     viewModel.addProductsToFavorites(it)
+                }else{
+                    binding.favoriteButton.setImageResource(R.color.black)
+                    binding.favoriteButton.isSelected = false
                 }
-
-                 */
 
             }
         }

@@ -126,21 +126,21 @@
         </androidx.core.widget.NestedScrollView>
 
 
-        <com.google.android.material.button.MaterialButton
+        <ImageView
             android:id="@+id/favoriteButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:baselineAlignBottom="false"
             android:layout_marginEnd="4dp"
             android:layout_marginStart="4dp"
-            app:icon="@drawable/ic_baseline_favoriteb"
-            app:iconGravity="start"
-            app:backgroundTint="@color/start"
+            android:background="@drawable/button_style"
+            app:iconGravity="top"
+            android:src="@drawable/ic_baseline_favoriteb"
             app:fabSize="normal"
             app:layout_anchor="@id/nestedScrollView"
             app:layout_anchorGravity="end|top">
 
-        </com.google.android.material.button.MaterialButton>
+        </ImageView>
 
 
 

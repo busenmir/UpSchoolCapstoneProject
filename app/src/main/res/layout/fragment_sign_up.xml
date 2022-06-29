@@ -115,7 +115,9 @@
                             android:id="@+id/nickEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/nickname" />
+                            android:hint="@string/nickname"
+                            android:textColor="@color/eden"
+                            android:textColorHint="@color/eden"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -140,7 +142,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/e_mail_hint"
-                            android:inputType="textEmailAddress" />
+                            android:inputType="textEmailAddress"
+                            android:textColor="@color/eden"
+                            android:textColorHint="@color/eden"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -158,6 +162,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/emailInputLayout"
                         app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/eden"
                         app:startIconDrawable="@drawable/ic_password"
                         app:startIconTint="@color/eden">
 
@@ -192,7 +197,7 @@
                             android:id="@+id/phoneEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="PHONE-NUMBER"
+                            android:hint="@string/phone"
                             android:textColor="@color/eden"
                             android:textColorHint="@color/eden" />
                     </com.google.android.material.textfield.TextInputLayout>

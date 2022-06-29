@@ -38,12 +38,19 @@ class HomeFragmentViewModel(context: Context) : ViewModel() {
         _isLoading = modelRepo.isLoading
     }
 
+    fun searchProducts(word:String){
+        modelRepo.searchProducts(word)
+        productsList = modelRepo.productsList
+        discountedList=modelRepo.discountedList
+        _isLoading = modelRepo.isLoading
+    }
+
     private fun getCategory(){
         modelRepo.category()
         categoryList = modelRepo.categoryList
         _isLoading = modelRepo.isLoading
     }
-    private fun getProducts() {
+    fun getProducts() {
         modelRepo.products()
         productsList = modelRepo.productsList
         _isLoading = modelRepo.isLoading

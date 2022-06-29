@@ -51,4 +51,8 @@ interface ProductsAPI {
     suspend fun getProductsbyCategory(
         @Field("category") category:String,): List<ProductsModel>
 
+    @POST("api/ecommerce/search_product.php")
+    @FormUrlEncoded
+    suspend fun searchProducts(@Field("query") word:String):List<ProductsModel>
+
 }

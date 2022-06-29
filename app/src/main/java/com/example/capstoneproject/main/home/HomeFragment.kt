@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
+import androidx.room.util.query
 import com.example.capstoneproject.R
 import com.example.capstoneproject.databinding.FragmentHomeBinding
 
@@ -42,6 +43,17 @@ class HomeFragment : Fragment() {
         categoryAdapter.onCategoryItemClick = {
             viewModel.getProductsbyCategory(it)
         }
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.searchProducts(query.orEmpty())
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.searchProducts(newText.orEmpty())
+                return true
+            }
+        })
     }
     private fun initObservers() {
         with(binding){

@@ -96,6 +96,17 @@ class ProductsRepository(context: Context) {
         )
     }
 
+    fun searchProducts(word:String){
+        isLoading.value=true
+        job= CoroutineScope(Dispatchers.IO).launch {
+            val list_respone = productsAPIService.searchProducts(word)
+            withContext(Dispatchers.Main) {
+                productsList.value = list_respone
+                isLoading.value = false
+            }
+        }
+    }
+
     fun getProductsbyCategory(category:String){
         isLoading.value=true
         job= CoroutineScope(Dispatchers.IO).launch {
