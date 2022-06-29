@@ -28,9 +28,8 @@
 </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.example.capstoneproject.login.ForgotPassword.ForgotPasswordFragment"
-        android:label="fragment_forgot_password"
-        tools:layout="@layout/fragment_forgot_password" >
+        android:name="com.example.capstoneproject.login.forgotpassword.ForgotPasswordFragment"
+        android:label="ForgotPasswordFragment" >
         <action
             android:id="@+id/action_forgotPasswordFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
