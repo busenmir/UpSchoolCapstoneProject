@@ -53,4 +53,8 @@ class ProductsAPIService {
         return api.searchProducts(word)
     }
 
+    suspend fun clearBag(user: String):CRUDResponse{
+        return api.clearBag(user)
+    }
+
 }

@@ -55,4 +55,11 @@ interface ProductsAPI {
     @FormUrlEncoded
     suspend fun searchProducts(@Field("query") word:String):List<ProductsModel>
 
+    @POST("api/ecommerce/clear_bag.php")
+    @FormUrlEncoded
+    suspend fun clearBag(
+        @Field("user") user:String):CRUDResponse
+
+
+
 }

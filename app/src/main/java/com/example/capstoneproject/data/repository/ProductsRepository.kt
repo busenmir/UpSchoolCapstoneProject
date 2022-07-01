@@ -30,6 +30,10 @@ class ProductsRepository(context: Context) {
 
     var favoritesBasketList = MutableLiveData<List<ProductsModel>>()
 
+    private var _crudResponse = MutableLiveData<CRUDResponse>()
+    val crudResponse: MutableLiveData<CRUDResponse>
+        get() = _crudResponse
+
     var isLoading = MutableLiveData<Boolean>()
 
     private val ProductsRoomDAO: ProductsRoomDAO =
@@ -172,5 +176,14 @@ class ProductsRepository(context: Context) {
 
     fun deleteFavoritesFromBasket(id: Int) {
         ProductsRoomDAO.deleteProductsWithId(id)
+    }
+
+    fun clearAllProductsInBasket(user: String) {
+        job = CoroutineScope(Dispatchers.IO).launch {
+            val crud_response = productsAPIService.clearBag(user)
+            withContext(Dispatchers.Main) {
+                _crudResponse.value = crud_response
+            }
+        }
     }
 }

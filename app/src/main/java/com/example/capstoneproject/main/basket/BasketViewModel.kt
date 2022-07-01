@@ -15,6 +15,10 @@ class BasketViewModel (context : Context) : ViewModel() {
 
     var isDeleteBasket = MutableLiveData<CRUDResponse>()
 
+    private var _crudResponse= MutableLiveData<CRUDResponse>()
+    val crudResponse: MutableLiveData<CRUDResponse>
+        get()=_crudResponse
+
     fun deleteProductBasket(id :Int,user: String){
         productsRepo.deleteProductBasket(id)
         isDeleteBasket=productsRepo.isProDeleteBasket
@@ -24,5 +28,15 @@ class BasketViewModel (context : Context) : ViewModel() {
     fun ListToBasket(user: String){
         productsRepo.ListToBasket(user)
         isListBasket=productsRepo.isListBasket
+    }
+
+    fun clearAllProductsInBasket(user:String) {
+        productsRepo.clearAllProductsInBasket(user)
+        _crudResponse=productsRepo.crudResponse
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        productsRepo.job?.cancel()
     }
 }

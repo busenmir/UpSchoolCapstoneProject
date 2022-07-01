@@ -57,14 +57,16 @@ class BasketFragment : Fragment() {
                         adapter = basketAdapter.also {
                             it.updateBasketList(list)
                         }
-                        if (list.isEmpty()) {
-                            goToPayButton.setOnClickListener {
-                                Toast.makeText(context, "Basket is Empty", Toast.LENGTH_LONG).show()
-                            }
-                        }else{
-                            goToPayButton.setOnClickListener {
-                                it.findNavController()
-                                    .navigate(R.id.action_basketFragment_to_successFragment)
+                        auth.currentUser?.let { user ->
+                            if (list.isEmpty()) {
+                                goToPayButton.setOnClickListener {
+                                    Toast.makeText(context, "Basket is Empty", Toast.LENGTH_LONG).show()
+                                }
+                            }else{
+                                goToPayButton.setOnClickListener {
+                                    viewModel.clearAllProductsInBasket(user.email.orEmpty())
+                                    observeClearProductsCrudResponse()
+                                }
                             }
                         }
                     }
@@ -75,6 +77,17 @@ class BasketFragment : Fragment() {
                         println(it.message)
                     }
                 }
+            }
+        }
+    }
+    private fun observeClearProductsCrudResponse() {
+        viewModel.crudResponse.observe(viewLifecycleOwner){
+            if (it.status == 1) {
+                val action =
+                    BasketFragmentDirections.actionBasketFragmentToSuccessFragment()
+                findNavController().navigate(action)
+            } else {
+                Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
             }
         }
     }
